@@ -1,22 +1,31 @@
 ﻿
 const btnGetAllToDosUsingXmlHttpRequest = document.getElementById("btnGetAllToDosUsingXmlHttpRequest");
 
-const GetData = () => {
+//Async Operations should use Promises
 
-    event.preventDefault();
-    const xhr = new XMLHttpRequest();
+const GetData = (method, url, data) => {
+    return new Promise(function (resolve, reject) {
+        const xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "https://localhost:7123/ToDo/GetList");
+        xhr.open(method, url);
 
-    xhr.responseType = 'json';
+        xhr.responseType = 'json';
 
-    xhr.onload = () => {
-        console.log(xhr.response);
+        xhr.onload = () => {
+            resolve(xhr.response);
+        };
 
-    };
+        xhr.send();
+    });
 
-    xhr.send();
 
 };
 
-btnGetAllToDosUsingXmlHttpRequest.addEventListener("click", GetData);
+btnGetAllToDosUsingXmlHttpRequest.addEventListener("click", () => {
+    event.preventDefault();
+
+    GetData("GET", "https://localhost:7123/ToDo/GetList").then((response) => {
+        console.log(response);
+    }).catch(err => { console.error(err) });
+
+});
