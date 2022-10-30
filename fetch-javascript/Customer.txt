@@ -1,0 +1,11 @@
+﻿
+-> Create MVC Core App 
+	-> CustomerController
+	-> Customer Model
+		-> First name
+		-> Last name
+	-> Page
+		-> Form
+			-> Add Customer First and Last Name
+		-> List
+			-> Get All Customer With FullName

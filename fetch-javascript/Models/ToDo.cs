@@ -8,6 +8,7 @@
 
         public ToDo(string title)
         {
+
             Id = Guid.NewGuid().ToString();
             Title = title;
         }
